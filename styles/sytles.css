@@ -6,25 +6,47 @@
 
 body {
   font-family: Arial, Helvetica, sans-serif;
-
+  background-color: white;
+  ;
 }
 
-a:link {
+a {
   text-decoration: none;
-}
-
-a:visited {
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-.TopBar {
   color: rgba(0,0,0, 8.7);
+}
+
+.SearchBar {
+  background: #f8f9fa;
 }
 
 #my-profile {
   border-radius: 50%;
+  height: 32px;
+  width: 32px;
+
+}
+
+/* needs to wrap */
+.container {
+  background-color: rgb(242, 242, 242);
+  display: flex;
+  flex-direction: row;
+}
+
+/* disspears? aslo should be an id */
+.header {
+  display: flex;
+  flex-direction: row;
+  height: 32px;
+  width: 100vw;
+  align-items: center;
+  
+}
+
+#headerLeftContainer {
+  justify-content: flex-start;
+}
+
+#headerRightContainer {
+  justify-content: flex-end;
 }
