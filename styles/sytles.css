@@ -1,0 +1,30 @@
+/* Base reset */
+* {
+    margin: 0;
+    padding: 0;
+  }
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+
+}
+
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.TopBar {
+  color: rgba(0,0,0, 8.7);
+}
+
+#my-profile {
+  border-radius: 50%;
+}
