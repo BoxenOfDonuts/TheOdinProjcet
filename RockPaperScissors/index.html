@@ -1,0 +1,65 @@
+<script>
+    function computerPlay() {
+        let random = Math.floor(Math.random() *3 );
+        let moveList= ["rock", "paper", "scissors"]
+
+        return moveList[random];
+    }
+
+    function playRound(playerSelection, computerSelection) {
+        if (playerSelection === computerSelection) {
+            return null
+        }
+        switch(playerSelection) {
+            case "rock":
+                if (computerSelection === "paper") {
+                    return false
+                } else {
+                    return true
+                }
+                break;
+            case "paper":
+                if (computerSelection === "scissors") {
+                    return false
+                } else {
+                    return true
+                }
+                break;
+            case "scissors":
+                if (computerSelection === 'rock') {
+                    return false;
+                } else {return true}
+                break;
+        }
+        
+    }
+
+    function game() {
+        let playerScore = 0;
+        let computerScore = 0;
+        
+        for ( let i = 0; i <= 4; i++) {
+            let playerSelection = (prompt("Rock, Paper, Or Scissors?")).toLowerCase();
+            let computerSelection = computerPlay();
+            let result = playRound(playerSelection, computerSelection);
+            console.log(i);
+
+            if (result) {
+                playerScore++
+            } else if (result === null) {
+                i--;
+            } else {
+                computerScore++
+            }
+        };
+
+        if (playerScore > computerScore) {
+            return "Player Wins!"
+        } else {
+            return "Computer Wins.. Boo!"
+        }
+    };
+
+    console.log(game());
+
+</script>
