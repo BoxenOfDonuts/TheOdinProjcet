@@ -24,13 +24,20 @@ h3.textContent="im blue h3";
 h3.setAttribute('style', 'color:blue');
 container.appendChild(h3);
 
-const divContent = document.createElement('dv');
+const divContent = document.createElement('div');
 const p = document.createElement('p');
 const h1 = document.createElement('h1');
 divContent.setAttribute('style', 'border:black; background-color:pink');
-h1.textContent('im in a div');
-p.textContent('me too')
+h1.textContent = 'im in a div';
+p.textContentextContent ='me too';
 divContent.appendChild(h1);
 divContent.appendChild(p);
 content.appendChild(divContent);
 
+
+const btn = document.querySelector('#btn');
+btn.onclick = () => alert("hello world");
+
+
+const btn2 = document.querySelector('#btn2');
+btn2.addEventListener('click', () => {alert('a hello world')});
