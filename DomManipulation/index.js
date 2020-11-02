@@ -41,3 +41,30 @@ btn.onclick = () => alert("hello world");
 
 const btn2 = document.querySelector('#btn2');
 btn2.addEventListener('click', () => {alert('a hello world')});
+
+// adding named functions //
+function alertFunction() {
+    alert("Yay!")
+};
+// method 2
+btn.onclick=alertFunction;
+// method 3
+btn2.addEventListener('click', alertFunction);
+btn2.addEventListener('click', e => console.log(e));
+
+//
+const btn3 = document.querySelector('#btn3');
+btn3.addEventListener('click', function(e) {
+    console.log(e.target);
+    e.target.style.background = 'blue';
+});
+
+
+
+// topic of callbacks
+// https://briggs.dev/blog/understanding-callbacks
+function myEventHandler(event) {
+    console.log(event)
+}
+
+btn2.addEventListener('click', myEventHandler)
