@@ -1,65 +1,20 @@
-<script>
-    function computerPlay() {
-        let random = Math.floor(Math.random() *3 );
-        let moveList= ["rock", "paper", "scissors"]
-
-        return moveList[random];
-    }
-
-    function playRound(playerSelection, computerSelection) {
-        if (playerSelection === computerSelection) {
-            return null
-        }
-        switch(playerSelection) {
-            case "rock":
-                if (computerSelection === "paper") {
-                    return false
-                } else {
-                    return true
-                }
-                break;
-            case "paper":
-                if (computerSelection === "scissors") {
-                    return false
-                } else {
-                    return true
-                }
-                break;
-            case "scissors":
-                if (computerSelection === 'rock') {
-                    return false;
-                } else {return true}
-                break;
-        }
-        
-    }
-
-    function game() {
-        let playerScore = 0;
-        let computerScore = 0;
-        
-        for ( let i = 0; i <= 4; i++) {
-            let playerSelection = (prompt("Rock, Paper, Or Scissors?")).toLowerCase();
-            let computerSelection = computerPlay();
-            let result = playRound(playerSelection, computerSelection);
-            console.log(i);
-
-            if (result) {
-                playerScore++
-            } else if (result === null) {
-                i--;
-            } else {
-                computerScore++
-            }
-        };
-
-        if (playerScore > computerScore) {
-            return "Player Wins!"
-        } else {
-            return "Computer Wins.. Boo!"
-        }
-    };
-
-    console.log(game());
-
-</script>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Rock Paper Scissors Game</title>
+  </head>
+  <body>
+    <div class="choices" style="margin-bottom: 10px;">
+      <button id="rock" class="choice-button" type="button">Rock</button>
+      <button id="paper" class="choice-button" type="button">Paper</button>
+      <button id="scissors" class="choice-button" type="button">Scissors</button>
+    </div>
+    <div class="score">
+        <!-- -->
+        <p id="player-score">Player: 0</p>
+        <p id="computer-score">Computer: 0</p>
+    </div>
+  </body>
+  <script src="index.js"></script>
+</html>
