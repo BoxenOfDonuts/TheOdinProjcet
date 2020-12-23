@@ -1,0 +1,19 @@
+.wrapper {
+    margin: auto;
+    height: 200px;
+    width: 200px;
+    background-color: blueviolet;
+}
+
+.box {
+    display: inline-block;
+    background-color: pink;
+    height: 100%;
+    width: 100%;
+    transition: transform 600ms cubic-bezier(0.68, -0.55, 0.27, 1.55)
+    /* pointer-events: none; */
+}
+
+.active {
+    transform: translate(200px, 150px) rotate(20deg);
+}
