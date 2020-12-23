@@ -1,5 +1,7 @@
 let wrapper = document.querySelector('.wrapper')
-const box = document.querySelector('.box')
 wrapper.addEventListener('click', (e) => {
-     box.classList.toggle('active')
+    const box = document.createElement('div')
+    box.classList.add('box')
+     wrapper.appendChild(box)
+     
  })
