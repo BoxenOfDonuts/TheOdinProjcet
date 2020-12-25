@@ -1,0 +1,93 @@
+:root {
+    --dot-color:  rgb(113, 113, 113);
+}
+
+.carousel-container {
+    margin: 50px auto 0;
+    height: 300px;
+    width: 550px;
+    background-color: black;
+    position: relative;
+    
+}
+
+.images {
+    display: none;
+    height: 300px;
+    width: 550px;
+}
+
+img {
+    width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+}
+
+.active {
+    display: block;
+}
+
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    color: white;
+    padding: 15px 10px;
+    background-color: rgba(0, 0, 0, .5);
+}
+
+.next {
+    right: 0px;
+}
+
+.dots {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+
+}
+
+.dot {
+    border-radius: 50%;
+    height: 10px;
+    width: 10px;
+    margin: 0 2px;
+    display: inline-block;
+    /* background-color: rgba(200, 200, 200, 1); */
+    border: 1px solid var(--dot-color);
+    transition: background-color 0.5s ease;
+}
+
+/* whoa fix this */
+.active, .dot:hover {
+    background-color: var(--dot-color)
+}
+
+@keyframes slide_animation{
+    0% {left: 0px;} 
+    10% {left: 0px;}
+    20% {left: 500px;}
+    30% {left: 500px;}
+    40% {left: 500px;}
+    50% {left: 500px;}
+    60% {left: 1000px;}
+    70% {left: 1000px;}
+    80% {left: 1000px;}
+    90% {left: 1000px;}
+    100% {left:1000px;}
+}
+
+@-webkit-keyframes slide_animation /* Safari and Chrome */{
+    0% {left: 0px;}
+    10% {left: 0px;}
+    20% {left: 500px;}
+    30% {left: 500px;}
+    40% {left: 500px;}
+    50% {left: 500px;}
+    60% {left: 1000px;}
+    70% {left: 1000px;}
+    80% {left: 1000px;}
+    90% {left: 1000px;}
+    100% {left:1000px;}
+}

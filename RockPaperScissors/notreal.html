@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Blast Off</title>
+  </head>
+  <body>
+      <div class="output"></div>
+<script>
+    let output = document.querySelector('.output');
+    output.innerHTML = '';
+
+    let i = 10;
+
+    while (i >= 0) {
+        if (i === 10) {
+            text = `Countdown ${i}`;
+        } else if (i === 0) {
+            text = "Blast Off!!!"
+        } else {
+            text = i;
+        }
+        i--;
+        const para = document.createElement('p');  
+        para.textContent = text ;
+        output.appendChild(para);
+
+    }
+</script>
+</body>
+</html>
+
+
+<script>
+const people = ['Chris', 'Anne', 'Colin', 'Terri', 'Phil', 'Lola', 'Sam', 'Kay', 'Bruce'];
+    
+    const admitted = document.querySelector('.admitted');
+    const refused = document.querySelector('.refused');
+    admitted.textContent = 'Admit: ';
+    refused.textContent = 'Refuse: '
+    let refusedArry = [];
+    
+    // let i = 0;
+
+    for (let i =0; i <= people.length -1; i++) {
+        if (people[i] === 'Lola' || people[i] === 'Phil') {
+            refusedArry.push(people[i]);
+            people.splice(people[i], 1);
+            i--;
+        }
+    }
+
+    refused.textContent += people.join(', ')
+    admitted.textContent += refusedArry.join(', ')
+
+
+
+    /*people.forEach(function(person) {
+        let text =String;
+        if (person == 'Lola' || 'Phil') {
+            refused.textContent += person + ', ';
+        } else {
+            admitted.textContent += person + ', ';
+        }
+    })*/
+    
+    // refused.textContent += ;
+    // admitted.textContent += ;
+
+
+</script>
