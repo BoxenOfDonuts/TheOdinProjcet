@@ -7,11 +7,23 @@
     <link href="index.css" rel="stylesheet">
 </head>
 <body>
-  <form>
-    <label for="mail">Email Address</label>
-    <input type="email" id="mail" name="mail">
+  <form novalidate>
+    <p>
+      <label for="mail">
+        <span>Please enter an email address:</span>
+        <input type="email" id="mail" name="mail" required minlength="8">
+        <span class="error" aria-live="polite"></span>
+      </label>
+    </p>
+    <p>
+      <label for="name">
+        <span>Please enter your name</span>
+        <input type="text" id="name" name="name" required minlength="2">
+        <span class="error" aria-live="polite"></span>
+      </label>
+    </p>
     <button>Submit</button>
   </form>
-    <script src="index.js"></script>
+  <script src="index.js"></script>
 </body>
 </html>
