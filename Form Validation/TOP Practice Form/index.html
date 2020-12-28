@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="form-popup" id="new-book-form">
+        <form class="form-container">
+            <h1>Add Book</h1>
+
+            <label for="email">Email
+                <input type="email" placeholder="example@gmail.com" name="email" required >
+                <span class="error" aria-live="polite"></span>
+            </label>
+
+
+            <!-- <label for="country">
+                <input type=""  name="country" required minLength="1">
+                <span class="error" aria-live="polite"></span>
+            </label> -->
+
+            <label for="country">Country
+                <select name="country" required>
+                    <option value='USA'>USA</option>
+                    <option value="IDK">Somewhere Else</option>
+                </select>
+                <span class="error" aria-live="polite"></span>
+            </label>
+
+            <label for="zipcode">Zipcode
+                <input type="number" name="zipcode" required min="5" max="5">
+                <span class="error" aria-live="polite"></span>
+            </label>
+
+            <label for="password">Password
+                <input type="password" name="password" required min="8" max="30">
+                <span class="error" aria-live="polite"></span>
+            </label>
+
+            <label for="password-confirm">Please re-enter password
+                <input type="password" name="password-confirm" required min="8" max="30">
+                <span class="error" aria-live="polite"></span>
+            </label>
+
+            <button type="button" class="btn" id="submit-button">Add</button>
+            <button type="button" class="btn cancel" id="cancel-button">Cancel</button>
+
+        </form>
+
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>
