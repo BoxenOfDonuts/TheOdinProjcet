@@ -89,7 +89,7 @@
     display: block;
   }
   
-  input.active {
+  .input.active {
     margin-bottom: 0px !important;
     background-color: #FDD !important;
   }
