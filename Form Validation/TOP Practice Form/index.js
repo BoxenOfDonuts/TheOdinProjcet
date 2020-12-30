@@ -7,30 +7,84 @@ const formValidation = (() => {
         fields.forEach(field => {
             if (!field.validity.valid) {
                 const errorSpan = field.nextElementSibling;
-                showError(field, errorSpan);
+                errorDisplay.showError(field, errorSpan);
                 valid = false;
             }
         })
 
-        if (!_passwordsMatch()) {
-            showError(form['password-confirm'], form['password-confirm'].nextElementSibling)
-            valid = false;
+        if (_validatePasswords()) {
+            if (!passwordsMatch())
+                errorDisplay.showError(form['passwordConfirm'], form['passwordConfirm'].nextElementSibling)
+                valid = false;
         }
         
         return valid;
     }
 
-    const validateSingleInput = (element) => {
+    const _validateSingleInput = (element) => {
         const errorSpan = element.nextElementSibling;
-        if (element.validity.valid && _passwordsMatch()) {
-            console.log(_passwordsMatch())
-            errorSpan.textContent = '';
-            errorSpan.className = 'error';
-            element.classList.remove('active');
+        if (element.validity.valid) {
+            errorDisplay.clearError(element, errorSpan)
         } else {
-            showError(element, errorSpan)
+            errorDisplay.showError(element, errorSpan)
         }
     }
+
+    const passwordsMatch = () => {
+        const element = document.querySelector('input[name="passwordConfirm"]')
+        const pass = document.querySelector('input[name="password"]').value;
+        const passConfirm = element.value;
+
+        return ( pass === passConfirm ) ? true : false;
+
+    }
+
+    const _validatePasswords = () => {
+        const passConfirm = document.querySelector('input[name="passwordConfirm"]').value
+        const pass = document.querySelector('input[name="password"]').value;
+        if (pass !== "" && passConfirm !== "") {
+            return true
+        }
+
+        return false;
+
+    }
+
+    const email = (element) => {
+        _validateSingleInput(element);
+    }
+
+    const country = (element) => {
+        _validateSingleInput(element);
+    }
+
+    const zipcode = (element) => {
+        _validateSingleInput(element);
+    }
+
+    const password = (element) => {
+        _validateSingleInput(element);
+                
+    }
+
+    const passwordConfirm = (element) => {
+        _validateSingleInput(element);
+        if (_validatePasswords()) {
+            if (passwordsMatch()) {
+                errorDisplay.clearError(element, element.nextElementSibling)
+            } else {
+                errorDisplay.showError(element, element.nextElementSibling)
+            }
+        }
+
+    }
+
+    return { email, country, zipcode, password, passwordConfirm, passwordsMatch, validateAll }
+
+})();
+
+
+const errorDisplay = (() => {
 
     const showError = (element, errorSpan) => {
         if (element.validity.valueMissing) {
@@ -43,7 +97,7 @@ const formValidation = (() => {
             errorSpan.textContent = `Every book has at least ${element.min} page`;
         } else if (element.validity.patternMismatch) {
             errorSpan.textContent = `please enter a vlid ${element.name}`;
-        } else if (!_passwordsMatch()) {
+        } else if (!formValidation.passwordsMatch()) {
             errorSpan.textContent = 'Passwords don\'t match!'
 
         }
@@ -53,34 +107,31 @@ const formValidation = (() => {
 
     }
 
-    const _passwordsMatch = () => {
-        const pass = document.querySelector('input[name="password"]').value;
-        const passConfirm = document.querySelector('input[name="password-confirm"]').value;
-        console.log(`pass: ${pass} passConfirm: ${passConfirm}`)
-
-        if (!passConfirm) {return null}
-
-        return ( pass === passConfirm ) ? true : false;
-
+    const clearError = (element, errorSpan) => {
+        errorSpan.textContent = '';
+        errorSpan.className = 'error';
+        element.classList.remove('active');
     }
 
-    return { validateSingleInput, showError, validateAll }
+    return { showError, clearError }
 
 })();
 
-formElement.addEventListener('input', (e) => {
+
+formElement.addEventListener('input', handleFormValidation)
+document.querySelectorAll('.input').forEach(input => input.addEventListener('blur', handleFormValidation))
+
+function handleFormValidation(e) {
     let el = e.target
     if (el) {
-        formValidation.validateSingleInput(el)
+        formValidation[el.name](el);
     }
-})
+}
 
 const add = document.querySelector("#submit-button")
 add.addEventListener('click', (e) => {
     if (!formValidation.validateAll(document.querySelector('form'))) {
         alert('please fill out missing values')
-    } else {
-
     }
 })
 
@@ -124,18 +175,18 @@ add.addEventListener('click', (e) => {
 
 // this works too!!!
 
-// const formValidation = (() => {
+// const bv = (() => {
 
     
-    // const email = (input) => console.log(input)
-    // return { email }
+//     const email = (input) => console.log(input)
+//     return { email }
 
-// })();\
+// })();
 
 
-// formElement.addEventListener('input', (e) => {
+// formElement.addEventListener('click', (e) => {
 //     let el = e.target.name
 //     if (el) {
-//         formValidation[el](e.target.value)
+//         bv[el](e.target.value)
 //     }
 // })
