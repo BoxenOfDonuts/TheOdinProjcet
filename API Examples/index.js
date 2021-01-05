@@ -1,6 +1,7 @@
 const img = document.querySelector('img');
+const imgTitle = document.querySelector('p');
 const apiKey = ""
-const URL = `https://api.giphy.com/v1/gifs/translate?api_key=${apiKey}&s=cats`;
+const searchURL = 'https://api.giphy.com/v1/gifs/search';
 const button = document.querySelector('button');
 document.getElementsByClassName('search')[0].addEventListener('click', handleSearch );
 document.querySelector('input').addEventListener('keyup', (e) => {
@@ -12,7 +13,6 @@ document.querySelector('input').addEventListener('keyup', (e) => {
 
 function handleSearch(e) {
     const search = document.querySelector('input').value;
-    const searchURL = 'https://api.giphy.com/v1/gifs/search';
     let url = '';
     const params = new URLSearchParams({
         api_key: apiKey,
@@ -25,34 +25,55 @@ function handleSearch(e) {
     fetchUrl(url);
 }
 
-function fetchUrl(url) {
-    fetch(url, {mode: "cors"})
-    .then((r) => {
-        if (!r.ok || !r.status === 200) {
-            throw new Error('Network Response Not Okay!!')
+async function fetchUrl(url) {
+    try {
+        const response = await fetch(url, {mode: "cors"});
+
+        if (response.status !== 200) {
+            throw new Error(`HTTP Error: ${response.status}`)
         }
-        return r.json()
-    })
-    .then((r) => {
-        console.log((r.data))
-        let url = ''
-        if (Array.isArray(r.data) && Array.from(r.data).length === 0) {
+
+        const { data } = await response.json();
+        if (data.length === 0) {
             throw new Error('No Images!')
-        } else if (Array.isArray(r.data)) {
-            const rand = Math.floor(Math.random() * (Array.from(r.data).length -1)) 
-            url = r.data[rand].images.original.url;
         } else {
-            url = r.data.images.original.url
+            const rand = Math.floor(Math.random() * data.length -1) 
+            url = data[rand].images.original.url;
+            console.log(data[rand])
+            imgTitle.textContent = data[rand].title
         }
         img.src = url;
-        
-    })
-    .catch(error => {
-        console.log(error)
+    } catch(error) {
+        console.log("Error: " + error)
         img.src = "teapot.jpg"
-    })
+    }
 }
 
 button.addEventListener('click', (e) => {
-    fetchUrl(URL)
+    let url = '';
+    const params = new URLSearchParams({
+        api_key: apiKey,
+        q: 'cats',
+        limit: 25,
+    })
+
+    url = searchURL + '?' + params;
+
+    fetchUrl(url).catch(error => {
+        console.log(".catch: " + error);
+        img.src = "teapot.jpg";
+    });
 })
+
+async function wait() {
+    await new Promise(resolve => setTimeout(resolve, 1000));
+  
+    return 10;
+  }
+  
+  function f() {
+      wait()
+        .then(val => {
+            console.log(val)
+        })
+  }
