@@ -1,0 +1,13 @@
+Vagrant.configure("2") do |config|
+
+	config.vm.define "top" do |top|
+		top.vm.box = "hashicorp/bionic64"
+		top.vm.hostname = "VagrantTOP"
+	end
+	
+	config.vm.provider "virtualbox" do |v|
+	  v.gui = true
+	  v.memory = 4096
+	  v.cpus = 4 
+	end
+end

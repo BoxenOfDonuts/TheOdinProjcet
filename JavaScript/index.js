@@ -348,3 +348,69 @@ const Book = (title, author) => {
    )
 }
 let book1 = Book('The Alchemist', 'Paulo Coelho');
+
+console.clear()
+
+
+
+// function get(url) {
+//    // Return a new promise.
+//    return new Promise(function(resolve, reject) {
+//      // Do the usual XHR stuff
+//      var req = new XMLHttpRequest();
+//      req.open('GET', url);
+ 
+//      req.onload = function() {
+//        // This is called even on 404 etc
+//        // so check the status
+//        if (req.status == 200) {
+//          // Resolve the promise with the response text
+//          resolve(req.response);
+//        }
+//        else {
+//          // Otherwise reject with the status text
+//          // which will hopefully be a meaningful error
+//          reject(Error(req.statusText));
+//        }
+//      };
+ 
+//      // Handle network errors
+//      req.onerror = function() {
+//        reject(Error("Network Error"));
+//      };
+ 
+//      // Make the request
+//      req.send();
+//    });
+//  }
+ 
+//  // Use it!
+//  get('https://mdn.github.io/learning-area/javascript/oojs/json/superheroes.json').then(function(response) {
+//    console.log("Success!", response);
+//  }, function(error) {
+//    console.error("Failed!", error);
+//  });
+
+ let p = new Promise((resolve, reject) => {
+   setTimeout(() => {
+     resolve('yay!')
+   }, 1000)
+
+   setTimeout(() => {
+    reject('shit!')
+  }, 1000)
+ })
+
+ p.then((fufilled) => {
+   console.log(fufilled);
+ })
+ .catch((rejected) => {
+   console.log(rejected);
+ })
+
+
+ fetch('http://api.icndb.com/jokes/random/0')
+  .then((resolve) =>{
+    console.log(resolve)
+  })
+  .catch((error) => console.log(error + ' Mike'))
