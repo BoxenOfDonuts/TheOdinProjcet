@@ -391,26 +391,51 @@ console.clear()
 //    console.error("Failed!", error);
 //  });
 
- let p = new Promise((resolve, reject) => {
-   setTimeout(() => {
-     resolve('yay!')
-   }, 1000)
+//  let p = new Promise((resolve, reject) => {
+//    setTimeout(() => {
+//      resolve('yay!')
+//    }, 1000)
 
-   setTimeout(() => {
-    reject('shit!')
-  }, 1000)
- })
+//    setTimeout(() => {
+//     reject('shit!')
+//   }, 1000)
+//  })
 
- p.then((fufilled) => {
-   console.log(fufilled);
- })
- .catch((rejected) => {
-   console.log(rejected);
- })
+//  p.then((fufilled) => {
+//    console.log(fufilled);
+//  })
+//  .catch((rejected) => {
+//    console.log(rejected);
+//  })
 
 
- fetch('http://api.icndb.com/jokes/random/0')
-  .then((resolve) =>{
-    console.log(resolve)
-  })
-  .catch((error) => console.log(error + ' Mike'))
+//  fetch('http://api.icndb.com/jokes/random/0')
+//   .then((resolve) =>{
+//     console.log(resolve)
+//   })
+//   .catch((error) => console.log(error + ' Mike'))
+
+
+
+
+// function doubleAfter2Seconds(x) {
+//   return new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       resolve(x * 2);
+//     }, 2000);
+//   });
+// }
+
+// doubleAfter2Seconds(4)
+//   .then((val) => {
+//     console.log(val)
+//   });
+
+async function addAsync(x) {
+  const a = await doubleAfter2Seconds(10);
+  const b = await doubleAfter2Seconds(20);
+  const c = await doubleAfter2Seconds(30);
+  return x + a + b + c;
+}
+
+addAsync(10)

@@ -69,11 +69,107 @@ async function wait() {
     await new Promise(resolve => setTimeout(resolve, 1000));
   
     return 10;
-  }
-  
-  function f() {
-      wait()
-        .then(val => {
-            console.log(val)
-        })
-  }
+}
+
+function f() {
+    wait()
+    .then(val => {
+        console.log(val)
+    })
+}
+
+f()
+
+
+// faster!!!
+
+const getDetails = async () => {
+    try {
+        const j = fetch('https://api.github.com/users/BoxenOfDonuts');
+        const h = fetch('https://api.github.com/users/wesbos');
+
+        const [jj, hh] = await Promise.all([
+            j,
+            h,
+        ])
+
+        // destructure list, then the object
+        // const [{login}, {login: wes}] = await Promise.all([
+        //     jj.json(),
+        //     hh.json(),
+        // ])
+        // console.log(login, wes)
+
+        const [me, you] = await Promise.all([
+            jj.json(),
+            hh.json(),
+        ])
+
+        console.log(me.login, you.login)
+
+
+    } catch(error) {
+        console.log(error)
+    }
+}
+
+getDetails();
+
+function timeoutPromise(delay) {
+	return new Promise( function(resolve,reject){
+		setTimeout( function(){
+			resolve( new Promise((resolve, reject) => {setTimeout( function() {resolve('poop')}, 1000)}));
+		}, delay );
+	} );
+}
+
+// const testyTest = async () => {
+//     try {
+//         // const a =  timeoutPromise(3000)
+//         // const b =  timeoutPromise(3000)
+        
+//         // const c = await Promise.all([a,b])
+//         // c.forEach(element => {
+//         //     console.log(element)
+//         // });
+
+
+//         const e = fetch('https://api.github.com/users/BoxenOfDonuts');
+//         const f = fetch('https://api.github.com/users/wesbos');
+
+//         const values = await Promise.all([
+//             e,
+//             f,
+//         ])
+//         console.log(values)
+        
+        
+//     } catch(e) {
+//         console.log(e)
+//     }
+// }
+
+// testyTest();
+
+// // https://stackoverflow.com/questions/38427761/promise-all-with-nested-promise-all
+
+
+// /// VERY BAD, immediately returns!!!
+// const latePromise = async (delay) => {
+//     const x =  await new Promise((resolve) => {
+//         setTimeout(() => {
+//             resolve( "yay!" );
+//         }, delay)
+//     })
+
+//     return x
+// }
+
+// /// VERY BAD, immediately returns!!!
+// const test2 = () => {
+//     const a = latePromise(5000);
+//     console.log('bbb');
+//     console.log(a)
+// };
+
+// test2();
