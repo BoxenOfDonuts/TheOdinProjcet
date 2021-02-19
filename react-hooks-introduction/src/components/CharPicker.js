@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useHttp } from '../hooks/http'
 
 import './CharPicker.css';
