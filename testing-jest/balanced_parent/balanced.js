@@ -51,7 +51,6 @@ const checkIfValidParenthesis = (string) => {
     } else {
       if (map[value] === stack.top) {
         stack.pop();
-        console.log(stack)
       } else {
         return false;
       }
