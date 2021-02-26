@@ -31,7 +31,6 @@ const findBinary = (n) => {
     queue.add(s1);
     queue.add(s2);
   }
-  console.log(queue.listQueue())
   return result;
 }
 
